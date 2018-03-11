@@ -13,7 +13,7 @@ public class App {
 
         try {
             // Build the dictionary.
-            WordMap map = new WordMap(args[0], args[1].length());
+            WordLadder map = new WordLadder(args[0], args[1].length());
 
             // Change to lower case.
             String word_1 = args[1].toLowerCase();

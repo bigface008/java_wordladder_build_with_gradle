@@ -11,10 +11,13 @@ import java.util.*;
  * @version 0.0.1
  */
 
-public class WordMap {
+public class WordLadder {
     private Set<String> dictionary = null;
+    private ArrayList<String> path = null;
+    private Map<String, String> map = null;
+    private Queue<String> queue = null;
 
-    public WordMap(String file_name, int len) throws IOException {
+    public WordLadder(String file_name, int len) throws IOException {
         File dic = new File(file_name);
         FileInputStream fin = new FileInputStream(dic);
         BufferedReader br = new BufferedReader(new InputStreamReader(fin));
@@ -34,8 +37,9 @@ public class WordMap {
      */
 
     public void ladder(String word_1, String word_2) {
-        Queue<String> queue = new LinkedList<>(); // Queue used in BFS.
-        Map<String, String> map = new HashMap<>(); // Map used for storing the path.
+        checkWords(word_1, word_2);
+        queue = new LinkedList<>(); // Queue used in BFS.
+        map = new HashMap<>(); // Map used for storing the path.
         queue.add(word_1);
         dictionary.remove(word_1);
         while (!queue.isEmpty()) {
@@ -44,7 +48,7 @@ public class WordMap {
             for (String n : neighbors) {
                 map.put(n, temp);
                 if (n.equals(word_2)) { // Check if get the final word.
-                    System.out.println("Paths: " + findPath(map, word_1, word_2)); // Print the result.
+                    System.out.println("Paths: " + findPath(word_1, word_2)); // Print the result.
                     System.exit(0);
                 }
                 dictionary.remove(n); // Ensure to remove the used word from the dictionary.
@@ -61,7 +65,7 @@ public class WordMap {
      * Check if the requirements listed below are satisfied.
      */
 
-    public void checkWords(String word_1, String word_2) {
+    private void checkWords(String word_1, String word_2) {
         if (word_1.length() != word_2.length()) { // Word must be the same length.
             System.out.println("The words must be the same length.");
             System.exit(1);
@@ -72,6 +76,22 @@ public class WordMap {
             System.out.println("Make sure to input right words.");
             System.exit(1);
         }
+    }
+
+    /**
+     * testCheckWords
+     * CheckWords() used for testing.
+     */
+
+    public boolean testCheckWords(String word_1, String word_2) {
+        if (word_1.length() != word_2.length()) { // Word must be the same length.
+            return false;
+        } else if (word_1.equals(word_2)) { // Word shouldn't be the same.
+            return false;
+        } else if (!dictionary.contains(word_1) || !dictionary.contains(word_2)) { // Words must exist in the dictionary.
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -101,8 +121,8 @@ public class WordMap {
      * Build the path with the record sorted in map.
      */
 
-    private String findPath(Map<String, String> map, String word_1, String word_2) {
-        ArrayList<String> path = new ArrayList<>();
+    private String findPath(String word_1, String word_2) {
+        path = new ArrayList<>();
         path.add(word_2);
 
         // Get word from map

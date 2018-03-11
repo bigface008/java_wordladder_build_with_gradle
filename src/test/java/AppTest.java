@@ -6,24 +6,27 @@ import static org.junit.Assert.*;
 import java.util.*;
 
 public class AppTest {
-    // @Test public void testAppHasAGreeting() {
-    //     App classUnderTest = new App();
-    //     assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-    // }
-    @Test public void testAppMapBuilder() {
+    @Test public void testMapBuilder() {
         try {
-            WordMap map = new WordMap("dictionary.txt", 3);
+            WordLadder map = new WordLadder("dictionary.txt", 3);
         } catch (Exception e) {
             System.out.println("Map Builder failed.");
         }
     }
 
-    @Test public void testAppWrongInput() {
+    @Test public void testWrongWord() {
         try {
-            WordMap map = new WordMap("dictionary.txt", 3);
-            map.checkWords("cat", "football");
+            WordLadder map = new WordLadder("dictionary.txt", 3);
+            assertEquals(false, map.testCheckWords("cat", "foot"));
+            assertEquals(false, map.testCheckWords("cat", "cat"));
+            assertEquals(false, map.testCheckWords("cat", "ca2"));
+            assertEquals(true, map.testCheckWords("cat", "dog"));
         } catch (Exception e) {
-            //TODO: handle exception
+            System.out.println("Map Builder failed.");
         }
+    }
+
+    @Test public void testStepNumber() {
+        // WordMap map = new WordMap("dictionary.txt", 3);
     }
 }
