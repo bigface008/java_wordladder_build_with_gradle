@@ -15,12 +15,8 @@ public class App {
             // Build the dictionary.
             WordLadder map = new WordLadder(args[0], args[1].length());
 
-            // Change to lower case.
-            String word_1 = args[1].toLowerCase();
-            String word_2 = args[2].toLowerCase();
-
             // Main Step.
-            map.ladder(word_1, word_2);
+            map.ladder(args[1], args[2]);
         } catch (Exception e) { // File name is wrong.
             System.out.println("Wrong file name.");
             System.exit(1);

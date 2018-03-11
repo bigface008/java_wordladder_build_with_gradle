@@ -12,10 +12,10 @@ import java.util.*;
  */
 
 public class WordLadder {
-    private Set<String> dictionary = null;
-    private ArrayList<String> path = null;
-    private Map<String, String> map = null;
-    private Queue<String> queue = null;
+    private Set<String> dictionary = null; // Record for all words.
+    private ArrayList<String> path = null; // Path recording the final result.
+    private Map<String, String> map = null; // Map used for storing the path.
+    private Queue<String> queue = null; // Queue used in BFS.
 
     public WordLadder(String file_name, int len) throws IOException {
         File dic = new File(file_name);
@@ -36,10 +36,17 @@ public class WordLadder {
      * The core function for finding paths from word_2 to word_1 with BFS.
      */
 
-    public void ladder(String word_1, String word_2) {
+    public void ladder(String from, String to) {
+        // Change to lower case.
+        String word_1 = from.toLowerCase();
+        String word_2 = to.toLowerCase();
+
+        // Check for wrong input.
         checkWords(word_1, word_2);
-        queue = new LinkedList<>(); // Queue used in BFS.
-        map = new HashMap<>(); // Map used for storing the path.
+
+        // BFS
+        queue = new LinkedList<>();
+        map = new HashMap<>();
         queue.add(word_1);
         dictionary.remove(word_1);
         while (!queue.isEmpty()) {
@@ -58,6 +65,15 @@ public class WordLadder {
         // No path avalible.
         System.out.println("No such path between " + word_1 + " and " + word_2 + ".");
         System.exit(1);
+    }
+
+    /**
+     * getStepNumber
+     * Get the number of words in path
+     */
+
+    public int getStepNumber() {
+        return path.size();
     }
 
     /**

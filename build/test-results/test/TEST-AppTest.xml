@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AppTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-03-11T06:03:36" hostname="dashi-PC" time="0.088">
+<testsuite name="AppTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-03-11T06:54:53" hostname="dashi-PC" time="0.1">
   <properties/>
-  <testcase name="testMapBuilder" classname="AppTest" time="0.064"/>
-  <testcase name="testWrongWord" classname="AppTest" time="0.023"/>
-  <testcase name="testStepNumber" classname="AppTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testMapBuilder" classname="AppTest" time="0.076"/>
+  <testcase name="testWrongWord" classname="AppTest" time="0.022"/>
+  <system-out><![CDATA[Paths: dog cog cot cat 
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
