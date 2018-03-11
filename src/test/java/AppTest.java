@@ -3,11 +3,27 @@
  */
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.*;
 
 public class AppTest {
     // @Test public void testAppHasAGreeting() {
     //     App classUnderTest = new App();
     //     assertNotNull("app should have a greeting", classUnderTest.getGreeting());
     // }
-    // @Test public void testAppHas
+    @Test public void testAppMapBuilder() {
+        try {
+            WordMap map = new WordMap("dictionary.txt", 3);
+        } catch (Exception e) {
+            System.out.println("Map Builder failed.");
+        }
+    }
+
+    @Test public void testAppWrongInput() {
+        try {
+            WordMap map = new WordMap("dictionary.txt", 3);
+            map.checkWords("cat", "football");
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
 }
